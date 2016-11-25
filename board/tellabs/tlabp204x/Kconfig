@@ -1,0 +1,12 @@
+if TARGET_TLABP204X
+
+config SYS_BOARD
+	default "tlabp204x"
+
+config SYS_VENDOR
+	default "tellabs"
+
+config SYS_CONFIG_NAME
+	default "TLABP204X"
+
+endif

@@ -1,0 +1,11 @@
+TLABP204X BOARD
+#M:	-
+S:	Maintained
+F:	board/tellabs/tlabp204x/
+F:	include/configs/TLABP204X.h
+F:	configs/TLABP204X_defconfig
+F:	configs/TLABP204X_NAND_defconfig
+F:	configs/TLABP204X_SDCARD_defconfig
+F:	configs/TLABP204X_SECURE_BOOT_defconfig
+F:	configs/TLABP204X_SPIFLASH_defconfig
+F:	configs/TLABP204X_SRIO_PCIE_BOOT_defconfig

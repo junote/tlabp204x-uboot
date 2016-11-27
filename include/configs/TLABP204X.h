@@ -13,7 +13,7 @@
 
 #define DEBUG
 
-#define CONFIG_TLABP204X
+/* #define CONFIG_TLABP204X */
 #define CONFIG_PHYS_64BIT
 #define CONFIG_DISPLAY_BOARDINFO
 #define CONFIG_PPC_P2041
@@ -39,8 +39,8 @@
 #define CONFIG_E500			/* BOOKE e500 family */
 #define CONFIG_E500MC			/* BOOKE e500mc family */
 #define CONFIG_SYS_BOOK3E_HV		/* Category E.HV supported */
-#define CONFIG_SYS_MPC85XX
-#define CONFIG_FSL_CORENET
+/* #define CONFIG_SYS_MPC85XX */
+/* #define CONFIG_FSL_CORENET */
 #define CONFIG_MP			/* support multiple processors */
 
 #ifndef CONFIG_SYS_TEXT_BASE
@@ -651,7 +651,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 /* #endif */
 
 #ifdef CONFIG_FMAN_ENET
-#define CONFIG_SYS_DTSEC_AUTONEG_DISABLE 0
+/* #define CONFIG_SYS_DTSEC_AUTONEG_DISABLE 0 */
 #define CONFIG_SYS_FM1_DTSEC1_PHY_ADDR	0x4
 #define CONFIG_SYS_FM1_DTSEC2_PHY_ADDR	0x3
 #define CONFIG_SYS_FM1_DTSEC3_PHY_ADDR	0x2
@@ -669,7 +669,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_MII		/* MII PHY management */
 #define CONFIG_ETHPRIME		"FM1@DTSEC1"
 #define CONFIG_PHY_GIGE		/* Include GbE speed/duplex detection */
-#define CONFIG_TSEC_TBIANA_SETTINGS 0x4001
+/* #define CONFIG_TSEC_TBIANA_SETTINGS 0x4001 */
 
 #define CONFIG_TSEC_TBICR_SETTINGS (                    \
                                     TBICR_FULL_DUPLEX   \
@@ -733,10 +733,10 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #endif
 
 /* Hash command with SHA acceleration supported in hardware */
-/* #ifdef CONFIG_FSL_CAAM */
-/* #define CONFIG_CMD_HASH */
-/* #define CONFIG_SHA_HW_ACCEL */
-/* #endif */
+#ifdef CONFIG_FSL_CAAM
+#define CONFIG_CMD_HASH
+#define CONFIG_SHA_HW_ACCEL
+#endif
 
 /*
  * Miscellaneous configurable options
@@ -778,7 +778,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_ROOTPATH		"/opt/nfsroot"
 #define CONFIG_BOOTFILE		"uImage"
 #define CONFIG_UBOOTPATH	u-boot.bin
-#define CONFIG_PBLFILE	        pbl.bin   	    /* RCW/PBL image */
+/* #define CONFIG_PBLFILE	        pbl.bin   	    /\* RCW/PBL image *\/ */
 
 /* default location for tftp and bootm */
 #define CONFIG_LOADADDR		1000000
@@ -798,9 +798,9 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_ETHADDR   00:04:9f:ef:05:01
 #define CONFIG_ETH1ADDR  00:04:9f:ef:05:02
 #define CONFIG_ETH2ADDR  00:04:9f:ef:05:03
-#define CONFIG_ETH3ADDR  00:04:9f:ef:05:04
-#define CONFIG_ETH4ADDR  00:04:9f:ef:05:05
-#define CONFIG_ETH5ADDR  00:04:9f:ef:05:06
+/* #define CONFIG_ETH3ADDR  00:04:9f:ef:05:04 */
+/* #define CONFIG_ETH4ADDR  00:04:9f:ef:05:05 */
+/* #define CONFIG_ETH5ADDR  00:04:9f:ef:05:06 */
 
 
 
@@ -821,7 +821,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 	"usb_dr_mode=host\0"					\
 	"ramdiskaddr=2000000\0"					\
 	"ramdiskfile=p2041rdb/ramdisk.uboot\0"			\
-	"fdtaddr=c00000\0"					\
+	"fdtaddr=1e00000\0"					\
 	"fdtfile=p2041rdb/p2041rdb.dtb\0"			\
 	"bdev=sda3\0"
 

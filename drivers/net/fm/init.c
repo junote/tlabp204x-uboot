@@ -8,6 +8,7 @@
 #include <asm/io.h>
 #include <fdt_support.h>
 #include <fsl_mdio.h>
+#include <libfdt.h>
 #ifdef CONFIG_FSL_LAYERSCAPE
 #include <asm/arch/fsl_serdes.h>
 #else

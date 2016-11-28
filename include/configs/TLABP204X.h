@@ -613,7 +613,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_PHYLIB
 #define CONFIG_MV88E61XX_SWITCH
 #define CONFIG_MV88E61XX_PHY_PORTS 0x73
-#define CONFIG_MV88E61XX_CPU_PORT 0
+#define CONFIG_MV88E61XX_CPU_PORT 8
 /* #define CONFIG_PHY_BROADCOM */
 /* #define CONFIG_PHY_MARVELL */
 /* #define CONFIG_PHYLIB_10G */
@@ -823,6 +823,9 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 	"ramdiskfile=p2041rdb/ramdisk.uboot\0"			\
 	"fdtaddr=1e00000\0"					\
 	"fdtfile=p2041rdb/p2041rdb.dtb\0"			\
+  "ethaddr=" __stringify(CONFIG_ETHADDR) "\0" \
+  "eth1addr=" __stringify(CONFIG_ETH1ADDR) "\0" \
+  "eth2addr=" __stringify(CONFIG_ETH2ADDR) "\0" \
 	"bdev=sda3\0"
 
 #define CONFIG_HDBOOT					\

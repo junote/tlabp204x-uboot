@@ -44,6 +44,8 @@
 #define PORT_MASK			((1 << PORT_COUNT) - 1)
 
 /* Device addresses */
+/* #define DEVADDR_PHY(p)			(p) */
+/* #define DEVADDR_PORT(p)			(0x10 + (p)) */
 #define DEVADDR_PHY(p)			(p)
 #define DEVADDR_PORT(p)			(0x10 + (p))
 #define DEVADDR_SERDES			0x0F
@@ -226,11 +228,13 @@ static int mv88e61xx_smi_wait(struct mii_dev *bus, int smi_addr)
 	u32 timeout = 100;
 
 	do {
+    debug("\njunote at smi wait phy bus= %s\n",bus->name);
+    debug("\njunote at smi wait phy addr= %d\n",smi_addr);
 		val = bus->read(bus, smi_addr, MDIO_DEVAD_NONE, SMI_CMD_REG);
 		if (val >= 0 && (val & SMI_BUSY) == 0)
 			return 0;
 
-		mdelay(1);
+		mdelay(10);
 	} while (--timeout);
 
 	puts("SMI busy timeout\n");
@@ -1034,6 +1038,7 @@ int phy_mv88e61xx_init(void)
 {
 	phy_register(&mv88e61xx_driver);
 	phy_register(&mv88e609x_driver);
+  /* debug("\njunote at mv88e609x\n"); */
 
 	return 0;
 }

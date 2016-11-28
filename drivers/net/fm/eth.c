@@ -771,7 +771,7 @@ int fm_eth_initialize(struct ccsr_fman *reg, struct fm_eth_info *info)
 	ret = fm_eth_startup(fm_eth);
 	if (ret)
 		return ret;
-
+  /* phy_init(); */
 	init_phy(dev);
 
 	/* clear the ethernet address */

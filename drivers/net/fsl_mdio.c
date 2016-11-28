@@ -100,7 +100,6 @@ int fsl_pq_mdio_init(bd_t *bis, struct fsl_pq_mdio_info *info)
 		printf("Failed to allocate FSL MDIO bus\n");
 		return -1;
 	}
-
 	bus->read = tsec_phy_read;
 	bus->write = tsec_phy_write;
 	bus->reset = fsl_pq_mdio_reset;

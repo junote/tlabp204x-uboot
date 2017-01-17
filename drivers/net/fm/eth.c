@@ -705,6 +705,16 @@ static int init_phy(struct eth_device *dev)
 
 	phydev->supported &= supported;
 	phydev->advertising = phydev->supported;
+/*
+ *
+ *#ifdef CONFIG_TLAB_MV88E6097_SWITCH
+ *  phydev->autoneg = AUTONEG_DISABLE;
+ *  phydev->speed = SPEED_1000;
+ *  phydev->link = 1;
+ *  phydev->duplex = DUPLEX_FULL;
+ *#endif
+ *
+ */
 
 	fm_eth->phydev = phydev;
 

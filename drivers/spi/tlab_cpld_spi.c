@@ -27,7 +27,7 @@
 #include <asm/types.h>
 #include <malloc.h>
 #include <spi.h>
-#include <cpld.h>
+#include <tlab_cpld.h>
 
 typedef struct spi8xxx {
         u32 mode;       /* mode register  */
@@ -240,7 +240,7 @@ int spi_xfer(struct spi_slave *slave, unsigned int bitlen, const void *dout,
   spi = get_spi_bus(slave->bus);
 
   spi_mode = spi->mode; /* read from cpld */
-  printf("jun debug at here for spi init\n");
+  printf("\jun debug at here for spi init\n");
 
 	debug("spi_xfer: slave %u:%u dout %08X din %08X bitlen %u\n",
 	      slave->bus, slave->cs, *(uint *) dout, *(uint *) din, bitlen);

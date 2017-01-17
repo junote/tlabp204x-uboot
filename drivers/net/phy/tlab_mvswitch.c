@@ -534,7 +534,7 @@ static int mv88e61xx_probe(struct phy_device *phydev)
 	struct mv88e61xx_phy_priv *priv;
 	int res;
 
-  /* printf("junote mv88e61xx_probe\n"); */
+  printf("junote mv88e61xx_probe\n");
 	res = mv88e61xx_hw_reset(phydev);
 	if (res < 0)
 		return res;
@@ -594,7 +594,7 @@ static void mv88e61xx_phy_config(struct phy_device *phydev)
 	int i;
 	int ret = -1;
 
-  /* printf("junote mv88e61xx_phy_config\n"); */
+  printf("junote mv88e61xx_phy_config\n");
 
 
     mv88e61xx_phy_write(phydev,0,0,0x3100);
@@ -613,11 +613,6 @@ static void mv88e61xx_phy_config(struct phy_device *phydev)
     mv88e61xx_reg_write(phydev, 0x18, 0x4, 0x7f);
     mv88e61xx_reg_write(phydev, 0x19, 0x4, 0x7f);
     mv88e61xx_reg_write(phydev, 0x1a, 0x4, 0x7f);
-
-    phydev->autoneg = AUTONEG_DISABLE;
-    phydev->speed = SPEED_1000;
-    phydev->link = 1;
-    phydev->duplex = DUPLEX_FULL;
 }
 
 static int mv88e61xx_phy_is_connected(struct phy_device *phydev)
@@ -701,43 +696,38 @@ static int mv88e61xx_phy_startup(struct phy_device *phydev)
 	int speed = phydev->speed;
 	int duplex = phydev->duplex;
 
-  /* printf("junote mv88e61xx_startup\n"); */
-   for (i = 0; i < PORT_COUNT; i++) {
-           phydev->addr = i;
-           if (!mv88e61xx_phy_is_connected(phydev))
-               continue;
-           res = genphy_update_link(phydev);
-           if (res < 0)
-               continue;
-           res = mv88e61xx_parse_status(phydev);
-           if (res < 0)
-               continue;
-           link = (link || phydev->link);
-   }
-   phydev->link = link;
-
+  printf("junote mv88e61xx_startup\n");
+/*
+ *    for (i = 0; i < port_count; i++) {
+ *        if ((1 << i) & config_mv88e61xx_phy_ports) {
+ *            phydev->addr = i;
+ *            if (!mv88e61xx_phy_is_connected(phydev))
+ *                continue;
+ *            res = genphy_update_link(phydev);
+ *            if (res < 0)
+ *                continue;
+ *            res = mv88e61xx_parse_status(phydev);
+ *            if (res < 0)
+ *                continue;
+ *            link = (link || phydev->link);
+ *        }
+ *    }
+ *    phydev->link = link;
+ *
+ */
 	/* Restore CPU interface speed and duplex after it was changed for
 	 * other ports */
-   phydev->speed = speed;
-   phydev->duplex = duplex;
-
+/*
+ *    phydev->speed = speed;
+ *    phydev->duplex = duplex;
+ *
+ */
 	return 0;
 }
 
 
-static struct phy_driver mv88e61xx_driver = {
-	.name = "Marvell MV88E61xx",
-	.uid = 0x01410eb1,
-	.mask = 0xfffffff0,
-	.features = PHY_GBIT_FEATURES,
-	.probe = mv88e61xx_probe,
-	.config = mv88e61xx_phy_config,
-	.startup = mv88e61xx_phy_startup,
-	.shutdown = &genphy_shutdown,
-};
-
-static struct phy_driver mv88e609x_driver = {
-	.name = "Marvell MV88E609x",
+static struct phy_driver tlab_mv88e6097_driver = {
+	.name = "Tellabs MV88E6097",
 	.uid = 0x1410c89,
 	.mask = 0xfffffff0,
 	.features = PHY_GBIT_FEATURES,
@@ -747,16 +737,14 @@ static struct phy_driver mv88e609x_driver = {
 	.shutdown = &genphy_shutdown,
 };
 
-int phy_mv88e61xx_init(void)
+
+int phy_tlab_mv88e6097_init(void)
 {
-	phy_register(&mv88e61xx_driver);
-	phy_register(&mv88e609x_driver);
-  /* printf("\njunote at mv88e609x\n"); */
+	phy_register(&tlab_mv88e6097_driver);
+  printf("\njunote at mv88e609x\n");
 
 	return 0;
 }
-
-
 
 /*
  * Overload weak get_phy_id definition since we need non-standard functions
@@ -789,6 +777,6 @@ int get_phy_id(struct mii_dev *bus, int smi_addr, int devad, u32 *phy_id)
 		return -EIO;
 
 	*phy_id |= (val & 0xffff);
-  /* printf("\njunote phy id = %x\n",*phy_id); */
+  printf("\njunote phy id = %x\n",*phy_id);
 	return 0;
 }

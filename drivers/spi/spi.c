@@ -35,7 +35,7 @@ void *spi_do_alloc_slave(int offset, int size, unsigned int bus,
 		slave->cs = cs;
 		slave->wordlen = SPI_DEFAULT_WORDLEN;
 	}
-
+  printf("jun note for spi.c\n");
 	return ptr;
 }
 

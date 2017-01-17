@@ -269,7 +269,7 @@ int do_netinit (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 
   /* Initialize the Marvell switch */
 
-  mvswitch_init();
+  /* mvswitch_init(); */
   return 0;
 }
 

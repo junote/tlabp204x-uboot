@@ -12,7 +12,7 @@
  * kernel dts file to point to the correct PHY according to serdes mux
  * and serdes protocol selection.
  */
-
+#include <config.h>
 #include <common.h>
 #include <netdev.h>
 #include <asm/fsl_serdes.h>
@@ -126,6 +126,7 @@ int board_eth_init(bd_t *bis)
 	struct tgec_mdio_info tgec_mdio_info;
 	unsigned int i, slot;
 	int lane;
+  struct phy_device *phydev;
 
 	printf("Initializing Fman\n");
 
@@ -152,7 +153,7 @@ int board_eth_init(bd_t *bis)
 	 * DTSEC4 and DTSEC5 are used for RGMII.
 	 */
 	fm_info_set_phy_address(FM1_DTSEC1, CONFIG_SYS_FM1_DTSEC1_PHY_ADDR);
-	fm_info_set_phy_address(FM1_DTSEC2, CONFIG_SYS_FM1_DTSEC2_PHY_ADDR);
+	fm_info_set_phy_address(FM1_DTSEC2, CONFIG_SYS_FM1_DTSEC1_PHY_ADDR);
 	/* fm_info_set_phy_address(FM1_DTSEC3, CONFIG_SYS_FM1_DTSEC3_PHY_ADDR); */
 
 	for (i = FM1_DTSEC1; i < FM1_DTSEC1 + CONFIG_SYS_NUM_FM1_DTSEC; i++) {
@@ -193,6 +194,7 @@ int board_eth_init(bd_t *bis)
 	/* fm_info_set_mdio(FM1_10GEC1, */
 	/* 		miiphy_get_dev_by_name(DEFAULT_FM_TGEC_MDIO_NAME)); */
 	cpu_eth_init(bis);
+  /* mv88e61xx_switch_init(); */
 #endif
 
 	return pci_eth_init(bis);

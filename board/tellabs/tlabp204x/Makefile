@@ -15,3 +15,4 @@ obj-y	+= tlb.o
 obj-y	+= cpld_spi.o
 obj-y	+= mvswitch.o
 obj-y	+= eth.o
+obj-y	+= zl30155.o

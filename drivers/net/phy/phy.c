@@ -461,6 +461,10 @@ static LIST_HEAD(phy_drivers);
 
 int phy_init(void)
 {
+#ifdef CONFIG_TLAB_MV88E6097_SWITCH
+	phy_tlab_mv88e6097_init();
+#endif
+
 #ifdef CONFIG_MV88E61XX_SWITCH
 	phy_mv88e61xx_init();
 #endif

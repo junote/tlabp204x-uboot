@@ -11,7 +11,7 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#define DEBUG
+/* #define DEBUG */
 
 /* #define CONFIG_TLABP204X */
 #define CONFIG_PHYS_64BIT
@@ -611,9 +611,10 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #ifdef CONFIG_SYS_DPAA_FMAN
 #define CONFIG_FMAN_ENET
 #define CONFIG_PHYLIB
+/* #define CONFIG_TLAB_MV88E6097_SWITCH */
 #define CONFIG_MV88E61XX_SWITCH
-#define CONFIG_MV88E61XX_PHY_PORTS 0x73
-#define CONFIG_MV88E61XX_CPU_PORT 8
+/* #define CONFIG_MV88E61XX_PHY_PORTS 0x3 */
+/* #define CONFIG_MV88E61XX_CPU_PORT  8 */
 /* #define CONFIG_PHY_BROADCOM */
 /* #define CONFIG_PHY_MARVELL */
 /* #define CONFIG_PHYLIB_10G */
@@ -701,7 +702,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_CMD_PCI
 #endif
 
-/* #define CONFIG_CMD_NET */
+#define CONFIG_CMD_NET
 
 /*
 * USB
@@ -789,15 +790,16 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 
 #define __USB_PHY_TYPE	utmi
 
-#define CONFIG_IPADDR		192.168.150.99
+#define CONFIG_IPADDR		192.168.150.111
 #define CONFIG_SERVERIP		192.168.36.193
 #define CONFIG_GATEWAYIP	192.168.150.1
 #define CONFIG_NETMASK		255.255.255.0
 #define CONFIG_NETDEV		eth0
 
-#define CONFIG_ETHADDR   00:04:9f:ef:05:01
-#define CONFIG_ETH1ADDR  00:04:9f:ef:05:02
-#define CONFIG_ETH2ADDR  00:04:9f:ef:05:03
+/* #define CONFIG_NET_RANDOM_ETHADDR */
+/* #define CONFIG_ETHADDR   00:04:9f:ef:05:01 */
+/* #define CONFIG_ETH1ADDR  00:04:9f:ef:05:02 */
+/* #define CONFIG_ETH2ADDR  00:04:9f:ef:05:03 */
 /* #define CONFIG_ETH3ADDR  00:04:9f:ef:05:04 */
 /* #define CONFIG_ETH4ADDR  00:04:9f:ef:05:05 */
 /* #define CONFIG_ETH5ADDR  00:04:9f:ef:05:06 */

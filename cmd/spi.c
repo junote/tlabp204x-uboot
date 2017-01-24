@@ -65,9 +65,11 @@ static int do_spi_xfer(int bus, int cs)
 	}
 #endif
 
+
 	ret = spi_claim_bus(slave);
 	if (ret)
 		goto done;
+
 	ret = spi_xfer(slave, bitlen, dout, din,
 		       SPI_XFER_BEGIN | SPI_XFER_END);
 #ifndef CONFIG_DM_SPI
@@ -156,6 +158,7 @@ int do_spi (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		return 1;
 	}
 
+  
 	if (do_spi_xfer(bus, cs))
 		return 1;
 

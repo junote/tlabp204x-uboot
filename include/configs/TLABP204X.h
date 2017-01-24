@@ -399,6 +399,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 /* Use the HUSH parser */
 /* #define CONFIG_SYS_HUSH_PARSER */
 
+#define CONFIG_SYS_PROMPT_HUSH_PS2	"> "
 /* pass open firmware flat tree */
 /* #define CONFIG_OF_LIBFDT */
 /* #define CONFIG_OF_BOARD_SETUP */
@@ -797,8 +798,8 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 #define CONFIG_NETDEV		eth0
 
 /* #define CONFIG_NET_RANDOM_ETHADDR */
-/* #define CONFIG_ETHADDR   00:04:9f:ef:05:01 */
-/* #define CONFIG_ETH1ADDR  00:04:9f:ef:05:02 */
+#define CONFIG_ETHADDR   00:04:9f:ef:05:01
+#define CONFIG_ETH1ADDR  00:04:9f:ef:05:02
 /* #define CONFIG_ETH2ADDR  00:04:9f:ef:05:03 */
 /* #define CONFIG_ETH3ADDR  00:04:9f:ef:05:04 */
 /* #define CONFIG_ETH4ADDR  00:04:9f:ef:05:05 */
@@ -822,12 +823,11 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 	"usb_phy_type=" __stringify(__USB_PHY_TYPE) "\0"		\
 	"usb_dr_mode=host\0"					\
 	"ramdiskaddr=2000000\0"					\
-	"ramdiskfile=p2041rdb/ramdisk.uboot\0"			\
+	"ramdiskfile=tlabp204x/ramdisk.uboot\0"			\
 	"fdtaddr=1e00000\0"					\
-	"fdtfile=p2041rdb/p2041rdb.dtb\0"			\
+	"fdtfile=tlabp204x/tlabp204x.dtb\0"			\
   "ethaddr=" __stringify(CONFIG_ETHADDR) "\0" \
   "eth1addr=" __stringify(CONFIG_ETH1ADDR) "\0" \
-  "eth2addr=" __stringify(CONFIG_ETH2ADDR) "\0" \
 	"bdev=sda3\0"
 
 #define CONFIG_HDBOOT					\

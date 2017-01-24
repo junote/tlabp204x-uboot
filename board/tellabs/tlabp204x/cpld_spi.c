@@ -178,6 +178,7 @@ struct spi_slave *spi_setup_slave(unsigned int bus, unsigned int cs,
 	debug("%s: bus:%i cs:%i freq:%i mode:%i\n", __func__,
 		bus, cs, max_hz, mode);
 
+
 	return &bss->slave;
 }
 
@@ -192,7 +193,6 @@ void spi_init(void)
     volatile spi8xxx_t *spi;
     unsigned int tmpdin, bus;
 
-    printf("\jun debug at here for spi init\n");
 
     for (bus = 0; bus <= NUM_BUSES; bus++) {
         spi = get_spi_bus(bus);
@@ -234,13 +234,13 @@ int spi_xfer(struct spi_slave *slave, unsigned int bitlen, const void *dout,
 	int numBlks = bitlen / 32 + (bitlen % 32 ? (((bitlen % 32) > 16) ? 2 : 1) : 0);
 	int tm, isRead = 0;
 	unsigned char charSize = 32;
-  double spi_clk_rate = (((double) CONFIG_SYS_CLK_FREQ) / 4.0);
+  int spi_clk_rate = 16666666.0;
+  /* double spi_clk_rate = (((double) CONFIG_SYS_CLK_FREQ) / 4.0); */
   unsigned spi_mode;
 
   spi = get_spi_bus(slave->bus);
 
   spi_mode = spi->mode; /* read from cpld */
-  printf("jun debug at here for spi init\n");
 
 	debug("spi_xfer: slave %u:%u dout %08X din %08X bitlen %u\n",
 	      slave->bus, slave->cs, *(uint *) dout, *(uint *) din, bitlen);
@@ -255,31 +255,31 @@ int spi_xfer(struct spi_slave *slave, unsigned int bitlen, const void *dout,
         spi_mode = bss->mode;
 
         /* Set spi clk divider */
-        if (((double) bss->max_hz) < (spi_clk_rate / 16.0)) {
+        if ((bss->max_hz) < 1041666) {
           spi_mode = (spi_mode | 0x08000000); /* DIV16 = 1 */
-          spi_clk_rate /= 16.0;
+          spi_clk_rate = 1041666;
         } else {
           spi_mode = (spi_mode & 0xf7ffffff); /* DIV16 = 0 */
         }
-        if (((double) bss->max_hz) < (spi_clk_rate / 2.0)) {
+        if (( bss->max_hz) < 520833) {
           spi_mode = (spi_mode | 0x00080000); /* DIV16 = 1 */
-          spi_clk_rate /= 2.0;
+          spi_clk_rate = 520833;
         } else {
           spi_mode = (spi_mode & 0xfff7ffff); /* DIV16 = 0 */
         }
-        if (((double) bss->max_hz) < (spi_clk_rate / 2.0)) {
+        if (( bss->max_hz) < 260416) {
           spi_mode = (spi_mode | 0x00040000); /* DIV8 = 0 */
-          spi_clk_rate /= 2.0;
+          spi_clk_rate = 260416;
         } else {
           spi_mode = (spi_mode & 0xfffbffff); /* DIV8 = 0 */
         }
-        if (((double) bss->max_hz) < (spi_clk_rate / 2.0)) {
+        if (( bss->max_hz) < 130208) {
           spi_mode = (spi_mode | 0x00020000); /* DIV4 = 1 */
-          spi_clk_rate /= 2.0;
+          spi_clk_rate = 130208;
         } else {
           spi_mode = (spi_mode & 0xfffdffff); /* DIV4 = 0 */
         }
-        if (((double) bss->max_hz) < (spi_clk_rate / 2.0)) {
+        if (( bss->max_hz) < 65104) {
           spi_mode = (spi_mode | 0x00010000); /* DIV2 = 1 */
         } else {
           spi_mode = (spi_mode & 0xfffeffff); /* DIV2 = 0 */

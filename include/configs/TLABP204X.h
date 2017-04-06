@@ -777,7 +777,7 @@ unsigned long get_board_sys_clk(unsigned long dummy);
 /*
  * Environment Configuration
  */
-#define CONFIG_ROOTPATH		"/opt/nfsroot"
+#define CONFIG_ROOTPATH		"/home/jcai/nfsroot"
 #define CONFIG_BOOTFILE		"uImage"
 #define CONFIG_UBOOTPATH	u-boot.bin
 /* #define CONFIG_PBLFILE	        pbl.bin   	    /\* RCW/PBL image *\/ */
